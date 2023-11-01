@@ -14,35 +14,38 @@
         <h1>Gerenciamento de produtos</h1>
     </div>
     <div class="text-left m-3">
-        <h3 class="m-3">Novo produto</h3>
+        <h3 class="m-3">[[${pageTitle}]]</h3>
     </div>
 
     <div class="container-fluid border">
         <form th:action="@{/products/save}" method="post" th:object="${product}">
-            <div class="row">
+
+            <div id="coderow" class="row">
                 <div class="col m-3">
                     <label class="form-label">Código</label>
-                    <input type="text" class="form-control" th:field="*{codigo}" required minlength="1" maxlength="15"/>
+                    <input id= "productCode" type="text" class="form-control" th:field="*{codigo}" onchange="upperName(this.id)" required minlength="1" maxlength="15"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col m-3">
                     <label class="form-label">Nome</label>
-                    <input type="text" class="form-control" th:field="*{nome}" required minlength="1" maxlength="50"/>
+                    <input id="productName" type="text" class="form-control" th:field="*{nome}" onchange="upperName(this.id)" required minlength="1" maxlength="50"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col m-3">
                     <label class="form-label">Descrição</label>
-                    <input type="text" class="form-control" th:field="*{descricao}" maxlength="200"/>
+                    <input id ="productDesc" type="text" class="form-control" th:field="*{descricao}" maxlength="200"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col m-3">
                     <label class="form-label">Estoque mínimo permitido para o produto</label>
-                    <input type="number" class="form-control" th:field="*{estoque_min}" required minlength="1"/>
+                    <input id = "productMinInventory" type="number" class="form-control" th:field="*{estoque_min}" required minlength="1"/>
                 </div>
             </div>
+
+            <input id="productInventoryQuant" type="hidden" class="form-control" th:field="*{quant_total}" required>
 
             <div class="row">
                 <div class="col-md-1 m-3">
@@ -62,4 +65,22 @@
     function cancelForm(){
         window.location = "/products";
     }
+
+    function upperName(inputId){
+        let x = document.getElementById(inputId);
+        x.value = x.value.toUpperCase();
+    }
+
+    window.onload = function() {
+        editCode();
+    };
+
+    function editCode(){
+        if ([[${codeDisplay}]] = "none"){
+            let x = document.getElementById("coderow");
+            console.log(x);
+            x.style = "display:none";
+        }
+    }
+
 </script>

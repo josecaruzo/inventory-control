@@ -16,6 +16,11 @@
     <div class="text-left mb-3 pe-auto">
         <a class="h3 link-primary" th:href="@{/products/new}"><i class="bi bi-plus-circle m-2"></i>Novo produto</a>
     </div>
+
+    <div th:if="${message}" class="alert alert-success">
+        [[${message}]]
+    </div>
+
     <div>
         <table class="table table-bordered">
             <thead class="table-dark">
