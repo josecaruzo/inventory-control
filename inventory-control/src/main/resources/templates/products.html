@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adição de novo produto</title>
+    <link rel="stylesheet" type ="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type ="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"/>
+    <link th:src="@{/webjars/bootstrap/css/jquery.min.js}" />
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="text-center">
+        <h1>Gerenciamento de produtos</h1>
+    </div>
+    <div class="text-left mb-3 pe-auto">
+        <a class="h3 link-primary" th:href="@{/products/new}"><i class="bi bi-plus-circle m-2"></i>Novo produto</a>
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+            <tr class="text-center">
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Quantidade total em estoque</th>
+                <th>Estoque mínimo permitido</th>
+                <th>Editar</th>
+                <th>Deletar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="product : ${productsList}">
+                <tr>
+                    <td>[[${product.codigo}]]</td>
+                    <td>[[${product.nome}]]</td>
+                    <td>[[${product.descricao}]]</td>
+                    <td>[[${product.quant_total}]]</td>
+                    <td>[[${product.estoque_min}]]</td>
+                    <td class="text-center"><a class="h5 link-primary" th:href="@{'/products/edit/' + ${product.codigo}}"><i class="bi bi-pencil-square pe-auto"></i></a></td>
+                    <td class="text-center"><a class="h5 link-primary" th:href="@{'/products/delete/' + ${product.codigo}}"><i class="bi bi-trash pe-auto"></i></a></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
