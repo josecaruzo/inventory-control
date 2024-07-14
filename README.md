@@ -1,5 +1,5 @@
 # inventory-control
-First FIAP Pos tech challenge
+1º Tech Challenge - POS TECH FIAP
 
 -----------------------------------------------------------------------------------------------------------------------------
 Projeto de controle de estoque feito em java com a base de dados MySql.
